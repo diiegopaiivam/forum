@@ -4,7 +4,7 @@
 <div class="container">
     <h3> {{ __('Most Recent Threads') }} </h3>
     <threads>
-        carregando
+        @include('layouts.default.preloader')
     </threads>
 </div>
 @endsection
