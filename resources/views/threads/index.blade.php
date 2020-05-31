@@ -1,12 +1,15 @@
-<meta name="csrf-token" content="{{ csrf_token() }}" />
+@extends('layouts.default')
 
-<div id="app">
-    <example-component>
-        carregando
-    </example-component>
+@section('content')
+<div class="container">
+    <h3> {{ __('Most Recent Threads') }} </h3>
+    <threads>
+        @include('layouts.default.preloader')
+    </threads>
 </div>
+@endsection
 
-<script src="/js/manifest.js"></script>
-<script src="/js/vendor.js"></script>
-<script src="/js/bootstrap.js"></script>
+@section('scripts')
 <script src="/js/threads.js"></script>
+@endsection
+
