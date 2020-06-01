@@ -39,7 +39,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {}
+  data: function data() {
+    return {
+      threads_response: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    window.axios.get('/threads').then(function (response) {
+      _this.threads_response = response.data;
+    });
+  }
 });
 
 /***/ }),
@@ -527,44 +538,50 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-content" }, [
+      _c("span", { staticClass: "card-title" }, [_vm._v("Threads")]),
+      _vm._v(" "),
+      _c("table", [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.threads_response.data, function(thread) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(thread.id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(thread.title))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("0")]),
+              _vm._v(" "),
+              _c("td", [
+                _c("a", { attrs: { href: "/threads/" + thread.id } }, [
+                  _vm._v("open")
+                ])
+              ])
+            ])
+          }),
+          0
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-content" }, [
-        _c("span", { staticClass: "card-title" }, [_vm._v("Threads")]),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
         _vm._v(" "),
-        _c("table", [
-          _c("thead", [
-            _c("tr", [
-              _c("th", [_vm._v("#")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Thread")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Reply")]),
-              _vm._v(" "),
-              _c("th")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Bora Ceará, parabéns vozão!!!")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("3")]),
-              _vm._v(" "),
-              _c("td", [
-                _c("a", { attrs: { href: "/threads/1" } }, [_vm._v("open")])
-              ])
-            ])
-          ])
-        ])
+        _c("th", [_vm._v("Thread")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Reply")]),
+        _vm._v(" "),
+        _c("th")
       ])
     ])
   }
